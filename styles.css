@@ -15,6 +15,12 @@ span{
     margin-left: 20px;
 }
 
+#title_art{
+    font-weight: bold;
+}
 
+#by_art,#sec_art,#date_art{
+    font-size: 15px;
+}
 
 
