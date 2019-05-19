@@ -4,7 +4,7 @@ https://costargc.github.io/NYT-api/
 
 
 ## Front-End Team
-![nyt-search](Instructions/Images/nyt.png)
+![nyt-search](instructions/Images/nyt.png)
 
 * Create the layout for the design above. Feel free to use Bootstrap or to do something more customized of your own.
 
