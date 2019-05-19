@@ -31,10 +31,12 @@ $("#searchMe").on("click", function (event) {
         url: queryURL,
         method: "GET"
     }).then(function (obj) {
-
+        console.clear();
         console.log(obj.response.meta.hits);
 
-        for (i = 0; i < retrieve; i++) {
+        maxloopSearch=Math.min(retrieve,obj.response.meta.hits);
+
+        for (i = 0; i < maxloopSearch; i++) {
             console.log(obj.response.docs[i].headline.main);
             console.log(obj.response.docs[i].byline.original);   
             console.log(obj.response.docs[i].section_name);
