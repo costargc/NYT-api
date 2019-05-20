@@ -1,3 +1,5 @@
+$(document).ready(function(){
+
 // datepicker
 $(function () {
     $(".datepicker").datepicker({ dateFormat: "yyyy-mm-dd" });
@@ -6,6 +8,10 @@ $(function () {
 // start of code search
 
 $("#searchMe").on("click", function (event) {
+// $("#myform").on("submit", function (event) {
+
+    // document.getElementById("myform").submit();
+
     searchTerm = $('#searchterm').val().trim();
     retrieve = $('#retrieve').val().trim();
     startYear = $('#startYear').val().trim();
@@ -22,41 +28,44 @@ $("#searchMe").on("click", function (event) {
 
     parameters = [searchTerm, retrieve, startYear, endYear];
 
+    if (searchTerm !== "") {
+        var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchTerm + begin_date + end_date + apikey;
 
-    var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchTerm + begin_date + end_date + apikey;
+        console.log(queryURL);
 
-    console.log(queryURL);
 
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function (obj) {
-        console.clear();
-        console.log(obj.response.meta.hits);
 
-        maxloopSearch = Math.min(retrieve, obj.response.meta.hits);
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (obj) {
+            console.clear();
+            console.log(obj.response.meta.hits);
 
-        for (i = 0; i < maxloopSearch; i++) {
+            maxloopSearch = Math.min(retrieve, obj.response.meta.hits);
 
-            console.log(obj.response.docs[i].headline.main); //title_art
-            console.log(obj.response.docs[i].byline.original); // by_art
-            console.log(obj.response.docs[i].section_name); //sec_art
-            // console.log(obj.response.docs[i].subsection_name);
-            console.log(obj.response.docs[i].pub_date); // date_art
-            console.log(obj.response.docs[i].web_url); // link_art
+            for (i = 0; i < maxloopSearch; i++) {
 
-            // create a div and append it to id="mainform"!... for every div create many spans with class results and append to div created.
-            //     <div class=" mb-1">
-            //         <span class='results' id='title_art'>Title: Bill Targeting Wind Energy Line...</span>
-            //         <span class='results' id='by_art'>By: The Associated Press</span>
-            //         <span class='results' id='sec_art'>Section: U.S.</span>
-            //         <span class='results' id='date_art'>Date: 2019-05-09T15:28:10+0000</span>
-            //         <span class='results' id='link_art'><a href="www.nytimes.com">www.nytimes.com</a></span>
-            //     </div>
-            
-        }
+                console.log(obj.response.docs[i].headline.main); //title_art
+                console.log(obj.response.docs[i].byline.original); // by_art
+                console.log(obj.response.docs[i].section_name); //sec_art
+                // console.log(obj.response.docs[i].subsection_name);
+                console.log(obj.response.docs[i].pub_date); // date_art
+                console.log(obj.response.docs[i].web_url); // link_art
 
-    });
+                // create a div and append it to id="mainform"!... for every div create many spans with class results and append to div created.
+                //     <div class=" mb-1">
+                //         <span class='results' id='title_art'>Title: Bill Targeting Wind Energy Line...</span>
+                //         <span class='results' id='by_art'>By: The Associated Press</span>
+                //         <span class='results' id='sec_art'>Section: U.S.</span>
+                //         <span class='results' id='date_art'>Date: 2019-05-09T15:28:10+0000</span>
+                //         <span class='results' id='link_art'><a href="www.nytimes.com">www.nytimes.com</a></span>
+                //     </div>
+
+            }
+
+        });
+    }
 
 
 });
@@ -74,5 +83,4 @@ function formatDate(date) {
     return [year, month, day].join('');
 }
 
-// var queryURL = "https://omdbapi.com/?t=" + movieName + "&apikey=trilogy";
-
+});
