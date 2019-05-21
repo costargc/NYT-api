@@ -28,7 +28,7 @@ $("#searchMe").on("click", function (event) {
 
     parameters = [searchTerm, retrieve, startYear, endYear];
 
-    if (searchTerm !== "") {
+
         var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchTerm + begin_date + end_date + apikey;
 
         console.log(queryURL);
@@ -43,6 +43,8 @@ $("#searchMe").on("click", function (event) {
             console.log(obj.response.meta.hits);
 
             maxloopSearch = Math.min(retrieve, obj.response.meta.hits);
+            var results=[];
+
 
             for (i = 0; i < maxloopSearch; i++) {
 
@@ -52,6 +54,30 @@ $("#searchMe").on("click", function (event) {
                 // console.log(obj.response.docs[i].subsection_name);
                 console.log(obj.response.docs[i].pub_date); // date_art
                 console.log(obj.response.docs[i].web_url); // link_art
+
+                results[i] = $("<div class='card mb-1'>");
+                var title = obj.response.docs[i].headline.main;
+                var pOne = $("<span id='title_art'>").text(title);
+                results[i].append(pOne);
+
+                var byline = obj.response.docs[i].byline.original;
+                var pTwo = $("<span id='by_art'>").text(byline);
+                results[i].append(pTwo);
+
+                var section = obj.response.docs[i].section_name;
+                var pThree = $("<span id='sec_art'>").text(section);
+                results[i].append(pThree);
+
+                var pubDate = obj.response.docs[i].pub_date;
+                var pFour = $("<span id='date_art'>").text(pubDate);
+                results[i].append(pFour);
+
+                var webUrl = obj.response.docs[i].web_url;
+                var pFive = $("<a href=\""+webUrl+"\">").text(webUrl);
+                results[i].append(pFive);
+
+
+            $("#results").prepend(results[i]);
 
                 // create a div and append it to id="mainform"!... for every div create many spans with class results and append to div created.
                 //     <div class=" mb-1">
@@ -65,7 +91,7 @@ $("#searchMe").on("click", function (event) {
             }
 
         });
-    }
+
 
 
 });
