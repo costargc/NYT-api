@@ -20,7 +20,7 @@ $(document).ready(function () {
         begin_date = "&begin_date=" + formatDate(startYear);
         end_date = "&end_date=" + formatDate(endYear);
 
-        if (startYear == "") { begin_date = "" };
+        if (startYear == "") { begin_date = "&begin_date=20190101" };
         if (endYear == "") { end_date = "" };
 
 
