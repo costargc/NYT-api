@@ -39,9 +39,9 @@ $(document).ready(function () {
             url: queryURL,
             method: "GET"
         }).then(function (obj) {
-            console.clear();
-            console.log(obj.response.meta.hits);
-            console.log(queryURL);
+            // console.clear();
+            // console.log(obj.response.meta.hits);
+            // console.log(queryURL);
 
             maxloopSearch = Math.min(retrieve, obj.response.meta.hits);
             var results = [];
