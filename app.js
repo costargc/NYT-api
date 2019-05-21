@@ -49,12 +49,12 @@ $(document).ready(function () {
             $('.cardme').remove();
             for (i = 0; i < maxloopSearch; i++) {
 
-                console.log(obj.response.docs[i].headline.main); //title_art
-                console.log(obj.response.docs[i].byline.original); // by_art
-                console.log(obj.response.docs[i].section_name); //sec_art
-                // console.log(obj.response.docs[i].subsection_name);
-                console.log(obj.response.docs[i].pub_date); // date_art
-                console.log(obj.response.docs[i].web_url); // link_art
+                // console.log(obj.response.docs[i].headline.main); //title_art
+                // console.log(obj.response.docs[i].byline.original); // by_art
+                // console.log(obj.response.docs[i].section_name); //sec_art
+                // // console.log(obj.response.docs[i].subsection_name);
+                // console.log(obj.response.docs[i].pub_date); // date_art
+                // console.log(obj.response.docs[i].web_url); // link_art
 
                 results[i] = $("<div class='cardme'>");
                 var title = obj.response.docs[i].headline.main;
