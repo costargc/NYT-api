@@ -46,7 +46,7 @@ $(document).ready(function () {
             maxloopSearch = Math.min(retrieve, obj.response.meta.hits);
             var results = [];
 
-            $('#check').remove();
+            $('.cardme').remove();
             for (i = 0; i < maxloopSearch; i++) {
 
                 console.log(obj.response.docs[i].headline.main); //title_art
@@ -56,7 +56,7 @@ $(document).ready(function () {
                 console.log(obj.response.docs[i].pub_date); // date_art
                 console.log(obj.response.docs[i].web_url); // link_art
 
-                results[i] = $("<div class='card mb-1' id=\"check\">");
+                results[i] = $("<div class='cardme'>");
                 var title = obj.response.docs[i].headline.main;
                 var pOne = $("<span class='results' id='title_art'>").text(title);
                 results[i].append(pOne);
